@@ -19,6 +19,8 @@ html {
 body {
   display: flex;
   height: 100vw;
+  margin: 0;
+  padding: 0 0.5rem;
 }
 
 aside {
@@ -99,4 +101,23 @@ code .line::before {
   display: inline-block;
   text-align: right;
   color: rgba(115,138,148,.4)
+}
+
+h1 {
+  margin: 12px 0 40px 0;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+}
+
+header h2 {
+  text-decoration: underline;
+}
+
+header time {
+  font-style: italic;
 }

@@ -11,6 +11,7 @@ import * as shiki from "shiki"
 import remarkToc from "remark-toc";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import matter from "gray-matter"
 
 async function getParserPre() {
   return unified()
@@ -43,16 +44,17 @@ const parserPromise = getParserPre()
 
 export async function getPostById(id: string) {
   const fullPath = join(process.cwd(), "posts", `${id}.md`);
-  const content =
+  const { data, content } = matter(
     await fs.promises.readFile(fullPath, "utf8")
+  )
 
   const parser = await parserPromise;
   const html = await parser.process(content);
 
   return {
-    title: id,
-    id: id,
-    //date: `${data.date?.toISOString().slice(0, 10)}`,
+    title: data.title as string,
+    id,
+    date: `${data.date?.toISOString().slice(0, 10)}`,
     html: html.value.toString(),
   };
 }
@@ -61,5 +63,5 @@ export async function getAllPosts() {
   const posts = await Promise.all(
     fs.readdirSync("posts").map(p => getPostById(p.replace(/.md$/, ``)))
   );
-  return posts
+  return posts.sort((p1, p2) => p1.date.localeCompare(p2.date))
 }

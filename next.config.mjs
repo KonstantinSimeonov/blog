@@ -6,8 +6,12 @@ const nextConfig = {
   reactStrictMode: true,
   experimental: {
     appDir: true,
-    mdxRs: true
-  }
+  },
+  redirects: async () => [{
+    source: `/`,
+    destination: `/posts/post-1`,
+    permanent: false
+  }]
 }
 
 export default nextConfig

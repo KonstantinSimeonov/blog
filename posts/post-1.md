@@ -1,3 +1,8 @@
+---
+title: this is a test, drugari
+date: 2023-04-13
+---
+
 <!--
 Notes for maintaining this document:
 
