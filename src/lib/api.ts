@@ -59,6 +59,8 @@ export async function getPostById(id: string) {
   };
 }
 
+export type Post = Awaited<ReturnType<typeof getPostById>>
+
 export async function getAllPosts() {
   const posts = await Promise.all(
     fs.readdirSync("posts").map(p => getPostById(p.replace(/.md$/, ``)))

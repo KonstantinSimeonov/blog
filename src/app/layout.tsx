@@ -1,13 +1,13 @@
 import "./styles/globals.css";
 import Link from "next/link";
 import React from "react";
-import { getAllPosts } from "@/lib/api";
+import { getAllPosts, Post } from "@/lib/api";
 
-const Nav: React.FC<{ posts: readonly string[] }> = ({ posts }) => (
+const Nav: React.FC<{ posts: readonly Post[] }> = ({ posts }) => (
   <ol>
-    {posts.map((name) => (
-      <li key={name}>
-        <Link href={`/posts/${name}`}>{name}</Link>
+    {posts.map(({ id, title }) => (
+      <li key={id}>
+        <Link href={`/posts/${id}`}>{title}</Link>
       </li>
     ))}
   </ol>
@@ -24,7 +24,7 @@ export default async function Layout({ children }: React.PropsWithChildren) {
         </main>
         <aside>
           <h2>Posts</h2>
-          <Nav posts={posts.map((p) => p.id)} />
+          <Nav posts={posts} />
           <h2>Author</h2>
           <ol>
             <li>
