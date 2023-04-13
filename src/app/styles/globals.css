@@ -14,7 +14,7 @@ body {
   overflow-x: hidden;
 }
 
-body > div:first-child {
+body {
   display: flex;
   height: 100vw;
 }
