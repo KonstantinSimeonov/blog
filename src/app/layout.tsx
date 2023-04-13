@@ -6,7 +6,7 @@ import React from "react";
 
 const getStaticProps = () => {
   const posts = fs
-    .readdirSync(path.join(process.cwd(), `src`, `app`, `posts`))
+    .readdirSync(path.join(process.cwd(), `posts`))
     .map((name) => path.parse(name).name);
   return posts;
 };
@@ -25,13 +25,14 @@ const Nav: React.FC<{ posts: readonly string[] }> = ({ posts }) => (
 );
 
 export default function Layout({ children }: React.PropsWithChildren) {
+  const posts = getStaticProps();
   return (
     <html lang="en">
       <body>
           <main>{children}</main>
           <aside>
             <h2>Posts</h2>
-            <Nav posts={[`post-1.md`]} />
+            <Nav posts={posts} />
           </aside>
       </body>
     </html>

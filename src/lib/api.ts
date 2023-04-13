@@ -8,41 +8,45 @@ import remarkRehype from "remark-rehype";
 import rehypeStringify from "rehype-stringify";
 import rehypeShiki from "@leafac/rehype-shiki"
 import * as shiki from "shiki"
-
-// memoize/cache the creation of the markdown parser, this sped up the
-// building of the blog from ~60s->~10s
-let p: ReturnType<typeof getParserPre> | undefined;
+import remarkToc from "remark-toc";
+import rehypeSlug from "rehype-slug";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
 
 async function getParserPre() {
   return unified()
     .use(remarkParse)
     .use(remarkGfm)
+    .use(remarkToc, { heading: `Contents` })
     .use(remarkRehype)
     .use(rehypeStringify)
     .use(rehypeShiki, {
-      highlighter: await shiki.getHighlighter({ theme: `nord` })
+      highlighter: await shiki.getHighlighter({ theme: `dracula` })
     })
+    .use(rehypeSlug)
+    .use(rehypeAutolinkHeadings, {
+      content: (arg) => ({
+        type: "element",
+        tagName: "a",
+        properties: {
+          href: "#" + arg.properties?.id,
+          style: "margin-right: 10px",
+        },
+        children: [{ type: "text", value: "#" }],
+      }),
+    });
     //.use(remarkParse)
     //.use(remarkRehype)
     //.use(remarkGfm)
 }
 
-function getParser() {
-  if (!p) {
-    p = getParserPre().catch((e) => {
-      p = undefined;
-      throw e;
-    });
-  }
-  return p;
-}
+const parserPromise = getParserPre()
 
 export async function getPostById(id: string) {
-  const fullPath = join(process.cwd(), "posts", id);
+  const fullPath = join(process.cwd(), "posts", `${id}.md`);
   const content =
     await fs.promises.readFile(fullPath, "utf8")
 
-  const parser = await getParser();
+  const parser = await parserPromise;
   const html = await parser.process(content);
 
   return {
@@ -55,7 +59,7 @@ export async function getPostById(id: string) {
 
 export async function getAllPosts() {
   const posts = await Promise.all(
-    fs.readdirSync("posts").map(getPostById)
+    fs.readdirSync("posts").map(p => getPostById(p.replace(/.md$/, ``)))
   );
   return posts
 }
