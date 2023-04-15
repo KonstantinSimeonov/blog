@@ -258,7 +258,7 @@ type b = Split<`null pointer exception lmao`, ` `> // [`null`, `pointer`, `excep
 type c = Split<`123`, ` `> // [`123`]
 ```
 
-Turns out, a lot of programs can be expressed (not necessarily conviently) just in terms of recursion, immutable values, variables and conditionals. I've been doing some fun programs without any runtime values ([json parsing with parser combinations](https://github.com/KonstantinSimeonov/aot/blob/master/programs/json-parse.ts), calculating (fibonacci numbers)[https://github.com/KonstantinSimeonov/aot/blob/master/programs/fibonacci.ts], etc) over at [github.com/KonstantinSimeonov/aot](https://github.com/KonstantinSimeonov/aot). If you're curious, go check it out, it has a bunch more wild (or terrifying, depending on where you stand on the subject) stuff.
+Turns out, a lot of programs can be expressed (not necessarily conviently) just in terms of recursion, immutable values, variables and conditionals. I've been doing some fun programs without any runtime values ([json parsing with parser combinations](https://github.com/KonstantinSimeonov/aot/blob/master/programs/json-parse.ts), calculating [fibonacci numbers](https://github.com/KonstantinSimeonov/aot/blob/master/programs/fibonacci.ts), etc) over at [github.com/KonstantinSimeonov/aot](https://github.com/KonstantinSimeonov/aot). If you're curious, go check it out, it has a bunch more wild (or terrifying, depending on where you stand on the subject) stuff.
 
 ## More `W`s and `L`s
 
@@ -267,6 +267,7 @@ This language also supports/lacks a couple of additions things:
 - supports maps on the type level through object types `{ [key in X]: Y }`
 - supports sets via union types - `A | B | C`
 - supports lists via tuples/arrays
+- supports typing generic parameters via `extends` - `type Split<Str extends string, Sep extends string> = ...`
 - doesn't support arithmetic (you can roll your own and it sort of hurts)
 - has a recursion depth limit, meaning you can't go arbitrarily deep with recursion
 
@@ -275,4 +276,4 @@ This language also supports/lacks a couple of additions things:
 While pretty curious, this somewhat hidden language is rarely practical to end user developers. It often finds much more use in libraries, where authors are trying to provide good DX/ensure the type safety of their libraries:
 - parse a graphql string to provide typings for the query result
 - provide a [deep partial type](https://github.com/colinhacks/zod/blob/502384e56fe2b1f8173735df6c3b0d41bce04edc/src/helpers/partialUtil.ts#L38) for different js types in the case of zod
-- typescript team to implement types like `Awaited`, `ReturnType`, `Parameters`
+- used by the typescript team to implement types like `Awaited`, `ReturnType`, `Parameters`
