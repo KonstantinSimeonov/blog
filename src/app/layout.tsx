@@ -1,9 +1,9 @@
 import "./styles/globals.css";
 import Link from "next/link";
 import React from "react";
-import { getAllPosts, Post } from "@/lib/api";
+import { getAllPosts, PostData } from "@/lib/api";
 
-const Nav: React.FC<{ posts: readonly Post[] }> = ({ posts }) => (
+const Nav: React.FC<{ posts: readonly PostData[] }> = ({ posts }) => (
   <ol>
     {posts.map(({ id, title }) => (
       <li key={id}>
@@ -41,9 +41,17 @@ export default async function Layout({ children }: React.PropsWithChildren) {
           </ol>
         </aside>
         <footer>
-          <p>This blog is{` `}
-              <Link target="_blank" href="https://github.com/KonstantinSimeonov/blog">open-sauce</Link>!
-    If you enjoyed the read or learned something, give it a star (yes, I&apos;m begging for stars)</p>
+          <p>
+            This blog is{` `}
+            <Link
+              target="_blank"
+              href="https://github.com/KonstantinSimeonov/blog"
+            >
+              open-sauce
+            </Link>
+            ! If you enjoyed the read or learned something, give it a star (yes,
+            I&apos;m begging for stars)
+          </p>
         </footer>
       </body>
     </html>
