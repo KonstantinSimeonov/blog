@@ -7,11 +7,7 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
-  redirects: async () => [{
-    source: `/`,
-    destination: `/posts/typelang`,
-    permanent: false
-  }]
+  output: `export`
 }
 
 export default nextConfig

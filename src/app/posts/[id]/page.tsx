@@ -1,20 +1,15 @@
-import { getAllPosts, getPostById } from "@/lib/api"
+import { Post } from "@/app/Post";
+import { getAllPosts, getPostById } from "@/lib/api";
 
-export default async function Post({ params: { id } }: { params: { id: string } }) {
-  const post = await getPostById(id)
+type Props = { params: { id: string } };
 
-  return (
-    <article>
-      <header>
-        <h2>{post.title}</h2> {`//`}
-        <time>{post.date}</time>
-      </header>
-      <div dangerouslySetInnerHTML={{ __html: post.html }} />
-    </article>
-  )
-}
+const PostById = async ({ params: { id } }: Props) => (
+  <Post post={await getPostById(id)} />
+);
+
+export default PostById;
 
 export async function generateStaticParams() {
-  const ps = await getAllPosts()
-  return ps.map(p => ({ id: p.id }))
+  const ps = await getAllPosts();
+  return ps.map((p) => ({ id: p.id }));
 }

@@ -59,7 +59,7 @@ export async function getPostById(id: string) {
   };
 }
 
-export type Post = Awaited<ReturnType<typeof getPostById>>
+export type PostData = Awaited<ReturnType<typeof getPostById>>
 
 export async function getAllPosts() {
   const posts = await Promise.all(
