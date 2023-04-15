@@ -1,4 +1,4 @@
 module.exports = {
   semi: false,
-  arrowParnes: `avoid`
+  arrowParens: `avoid`
 }
