@@ -125,3 +125,10 @@ header h2 {
 header time {
   font-style: italic;
 }
+
+footer {
+  width: 100%;
+  border-top: 1px dashed;
+  display: flex;
+  justify-content: center;
+}

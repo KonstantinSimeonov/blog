@@ -40,6 +40,11 @@ export default async function Layout({ children }: React.PropsWithChildren) {
             </li>
           </ol>
         </aside>
+        <footer>
+          <p>This blog is{` `}
+              <Link target="_blank" href="https://github.com/KonstantinSimeonov/blog">open-sauce</Link>!
+    If you enjoyed the read or learned something, give it a star (yes, I&apos;m begging for stars)</p>
+        </footer>
       </body>
     </html>
   );

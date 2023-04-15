@@ -3,9 +3,7 @@ title: A programming language hidden in plain sight
 date: 2023-04-13
 ---
 
-## Contents
-
-### Types/Variables
+## Types/Variables
 
 Typescript can often be a seriously awesome language and part of this comes from the ways it lets programmers define types:
 
@@ -27,7 +25,7 @@ RequestState = RequestState | `pending`;
 
 Let's say that in `type X = ...` `X` is an immutable type variable and see where this gets us.
 
-### Generic Types/Functions
+## Generic Types/Functions
 
 [Generics](https://www.typescriptlang.org/docs/handbook/2/generics.html) are pretty rad. Let's see how we use them with types:
 
@@ -55,7 +53,7 @@ const more_nums = concat(a, b); // [3, 4, 5, 8]
 
 The two snippets look kind of similar, right? If we squint a bit, we can see the similarity between the `Pair` type and `pair` function - both accept arguments and evaluate to a value - in the case of `Pair` the value is a type, in the case of `pair` a runtime array. `Concat` and `concat` are likewise similar. Generics are pretty similar to functions, let's leave it at that for now.
 
-### Conditionals
+## Conditionals
 
 One of pretty interesting typescript feature is [conditional types](https://www.typescriptlang.org/docs/handbook/2/conditional-types.html):
 
@@ -118,7 +116,7 @@ const y = first([]) // y is undefined
 
 Conditional types are very similar to the javascript ternary operator - if the `extends` condition holds, the conditional evaluates to the first value, otherwise it evaluates to the second. This provides programmers with a way to do branching logic and flow control when defining types. Conditional types allow generics to branch out based on their input parameters.
 
-### Infer/Pattern Matching
+## Infer/Pattern Matching
 [`infer`](https://www.typescriptlang.org/docs/handbook/2/conditional-types.html#inferring-within-conditional-types), while looking somwhat scary the first times you see it, is actually pretty useful and not that complicated. It's a lot like javascript destructuring (or pattern matching, if you lean that way).
 
 ```ts
@@ -194,7 +192,7 @@ type SumReturnType = ResultType<typeof sum> // number
 
 So we can cleary see that generics (functions) + conditional types (if/else + destructuring) can make some wild stuff happen.
 
-### Recursive Types/Recursion
+## Recursive Types/Recursion
 
 Let's pick up a couple recursive data structures, for example binary trees and json values. Let's look at one possible represantation of those structures in typescript types:
 
@@ -262,7 +260,7 @@ type c = Split<`123`, ` `> // [`123`]
 
 Turns out, a lot of programs can be expressed (not necessarily conviently) just in terms of recursion, immutable values, variables and conditionals. I've been doing some fun programs without any runtime values ([json parsing with parser combinations](https://github.com/KonstantinSimeonov/aot/blob/master/programs/json-parse.ts), calculating (fibonacci numbers)[https://github.com/KonstantinSimeonov/aot/blob/master/programs/fibonacci.ts], etc) over at [github.com/KonstantinSimeonov/aot](https://github.com/KonstantinSimeonov/aot). If you're curious, go check it out, it has a bunch more wild (or terrifying, depending on where you stand on the subject) stuff.
 
-### More `W`s and `L`s
+## More `W`s and `L`s
 
 This language also supports/lacks a couple of additions things:
 - supports higher order functions (higher kinded types) through module augmentation (have a look at [`fp-ts`](https://gcanti.github.io/fp-ts/))
@@ -272,7 +270,7 @@ This language also supports/lacks a couple of additions things:
 - doesn't support arithmetic (you can roll your own and it sort of hurts)
 - has a recursion depth limit, meaning you can't go arbitrarily deep with recursion
 
-### Practicality
+## Practicality
 
 While pretty curious, this somewhat hidden language is rarely practical to end user developers. It often finds much more use in libraries, where authors are trying to provide good DX/ensure the type safety of their libraries:
 - parse a graphql string to provide typings for the query result
