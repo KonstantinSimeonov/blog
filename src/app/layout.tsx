@@ -1,20 +1,26 @@
-import "./styles/globals.css";
-import Link from "next/link";
-import React from "react";
-import { getAllPosts, PostData } from "@/lib/api";
+import "./styles/globals.css"
+import Link from "next/link"
+import React from "react"
+import { getAllPosts, PostData } from "@/lib/api"
 
 const Nav: React.FC<{ posts: readonly PostData[] }> = ({ posts }) => (
   <ol>
     {posts.map(({ id, title }) => (
       <li key={id}>
-        <Link href={`/posts/${id}${process.env.NODE_ENV === `production` ? `.html` : ``}`}>{title}</Link>
+        <Link
+          href={`/posts/${id}${
+            process.env.NODE_ENV === `production` ? `.html` : ``
+          }`}
+        >
+          {title}
+        </Link>
       </li>
     ))}
   </ol>
-);
+)
 
 export default async function Layout({ children }: React.PropsWithChildren) {
-  const posts = await getAllPosts();
+  const posts = await getAllPosts()
   return (
     <html lang="en">
       <body>
@@ -55,5 +61,5 @@ export default async function Layout({ children }: React.PropsWithChildren) {
         </footer>
       </body>
     </html>
-  );
+  )
 }
