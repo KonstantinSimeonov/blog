@@ -3,6 +3,8 @@ title: A programming language hidden in plain sight
 date: 2023-04-13
 ---
 
+Typescript is a pretty popular language (and for good reasons), but it has it's fair share of non-obvious and hidden things. In this post, we'll explore what is possible with typescript without writing any runtime code (outside of educational use). <sub><sub>if recursion scares you, you might not enjoy this post</sub></sub>
+
 ## Types/Variables
 
 Typescript can often be a seriously awesome language and part of this comes from the ways it lets programmers define types:

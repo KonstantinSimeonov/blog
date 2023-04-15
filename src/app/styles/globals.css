@@ -132,3 +132,7 @@ footer {
   display: flex;
   justify-content: center;
 }
+
+*:not(pre) > code {
+  color: #19f9d8;
+}
