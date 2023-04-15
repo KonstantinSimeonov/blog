@@ -9,7 +9,7 @@ const nextConfig = {
   },
   redirects: async () => [{
     source: `/`,
-    destination: `/posts/post-1`,
+    destination: `/posts/typelang`,
     permanent: false
   }]
 }
