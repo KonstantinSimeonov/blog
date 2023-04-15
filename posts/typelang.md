@@ -1,5 +1,6 @@
 ---
 title: A programming language hidden in plain sight
+description: Typescript is a pretty popular language (and for good reasons), but it has its fair share of non-obvious and hidden things. In this post, we'll explore what is possible with typescript without writing any runtime code...
 date: 2023-04-13
 ---
 

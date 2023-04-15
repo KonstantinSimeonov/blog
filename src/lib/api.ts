@@ -54,6 +54,7 @@ export async function getPostById(id: string) {
   return {
     title: data.title as string,
     id,
+    description: data.description as string,
     date: `${data.date?.toISOString().slice(0, 10)}`,
     html: html.value.toString(),
   };
