@@ -7,7 +7,7 @@ const Nav: React.FC<{ posts: readonly PostData[] }> = ({ posts }) => (
   <ol>
     {posts.map(({ id, title }) => (
       <li key={id}>
-        <Link href={`/posts/${id}`}>{title}</Link>
+        <Link href={`/posts/${id}${process.env.NODE_ENV === `production` ? `.html` : ``}`}>{title}</Link>
       </li>
     ))}
   </ol>
