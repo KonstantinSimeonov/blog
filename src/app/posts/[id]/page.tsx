@@ -6,7 +6,7 @@ export default async function Post({ params: { id } }: { params: { id: string } 
   return (
     <article>
       <header>
-        <h2>{post.title}</h2> //
+        <h2>{post.title}</h2> {`//`}
         <time>{post.date}</time>
       </header>
       <div dangerouslySetInnerHTML={{ __html: post.html }} />

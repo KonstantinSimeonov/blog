@@ -279,3 +279,7 @@ While pretty curious, this somewhat hidden language is rarely practical to end u
 - parse a graphql string to provide typings for the query result
 - provide a [deep partial type](https://github.com/colinhacks/zod/blob/502384e56fe2b1f8173735df6c3b0d41bce04edc/src/helpers/partialUtil.ts#L38) for different js types in the case of zod
 - used by the typescript team to implement types like `Awaited`, `ReturnType`, `Parameters`
+
+## Wanna go further?
+
+Checkout out [typescript challenges](https://github.com/type-challenges/type-challenges).
