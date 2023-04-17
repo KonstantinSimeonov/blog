@@ -1,5 +1,10 @@
-process.stdout.write(
-  require(`fs`)
-    .readFileSync(0, `utf8`)
-    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, ``)
+const fs = require(`fs`)
+
+const cleansed = fs
+  .readFileSync(process.argv[2], `utf8`)
+  .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, ``)
+
+fs.writeFileSync(
+  process.argv[2],
+  cleansed,
 )
