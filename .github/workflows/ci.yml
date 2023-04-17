@@ -14,10 +14,13 @@ jobs:
           cache: "npm"
 
       - name: install deps
-        run: npm i --force # thanks, shiki -.-
+        run: npm i
 
       - name: build
         run: npm run build
+
+      - name: cleanse the javascript in righteous fire
+        run: bash cleanse.sh
 
       - name: store exported build
         uses: actions/upload-artifact@v3
