@@ -13,19 +13,19 @@ Typescript is a pretty popular language (and for good reasons), but it has its f
 Typescript can often be a seriously awesome language and part of this comes from the ways it lets programmers define types:
 
 ```ts
-type Point2d = [number, number];
-type Point3d = [...Point2d, number]; // equals [number, number, number]
+type Point2d = [number, number]
+type Point3d = [...Point2d, number] // equals [number, number, number]
 
-type DistFunc = (point: Point2d | Point3d) => number;
+type DistFunc = (point: Point2d | Point3d) => number
 ```
 
 The careful observer might notice that defining types via the `type` keyword looks a lot like defining `const` variables. We usually don't think of typescript types as variables, because we cannot reassign them:
 
 ```ts
-type RequestState = `error` | `success`;
+type RequestState = `error` | `success`
 
 // error
-RequestState = RequestState | `pending`;
+RequestState = RequestState | `pending`
 ```
 
 Let's say for now that in `type X = ...`, `X` is an immutable type variable and see where this gets us.
@@ -35,25 +35,25 @@ Let's say for now that in `type X = ...`, `X` is an immutable type variable and 
 [Generics](https://www.typescriptlang.org/docs/handbook/2/generics.html) are pretty rad. Let's see how we use them with types:
 
 ```ts
-type Pair<A, B> = [A, B];
-type A = Pair<3, 4>; // [3, 4]
-type B = Pair<5, 8>; // [5, 8]
+type Pair<A, B> = [A, B]
+type A = Pair<3, 4> // [3, 4]
+type B = Pair<5, 8> // [5, 8]
 
-type Concat<XS extends any[], YS extends any[]> = [...XS, ...YS];
-type Nums = Concat<[1, 2, 3], [4]>; // [1, 2, 3, 4]
-type MoreNums = Concat<A, B>; // [3, 4, 5, 8]
+type Concat<XS extends any[], YS extends any[]> = [...XS, ...YS]
+type Nums = Concat<[1, 2, 3], [4]> // [1, 2, 3, 4]
+type MoreNums = Concat<A, B> // [3, 4, 5, 8]
 ```
 
 `Pair` takes two type arguments and returns an fixed-length array type (tuple... sorta) containing the first and the second argument. `Concat` takes two type arguments (constrained to be arrays so that the spread will work) and returns a concatenated array type. Let's look at some JavaScript code next:
 
 ```js
-const pair = (a, b) => [a, b];
-const a = pair(3, 4);
-const b = pair(5, 8);
+const pair = (a, b) => [a, b]
+const a = pair(3, 4)
+const b = pair(5, 8)
 
-const concat = (xs, ys) => [...xs, ...ys];
-const nums = concat([1, 2, 3], [4]); // [1, 2, 3, 4]
-const more_nums = concat(a, b); // [3, 4, 5, 8]
+const concat = (xs, ys) => [...xs, ...ys]
+const nums = concat([1, 2, 3], [4]) // [1, 2, 3, 4]
+const more_nums = concat(a, b) // [3, 4, 5, 8]
 ```
 
 The two snippets look kind of similar, right? If we squint a bit, we can see the similarity between the `Pair` type and `pair` function - both accept arguments and evaluate to a value - in the case of `Pair` the value is a type, in the case of `pair` a runtime array. `Concat` and `concat` are likewise similar. Generics are pretty similar to functions, let's leave it at that for now.
@@ -63,11 +63,11 @@ The two snippets look kind of similar, right? If we squint a bit, we can see the
 One pretty interesting typescript feature is [conditional types](https://www.typescriptlang.org/docs/handbook/2/conditional-types.html):
 
 ```ts
-type A = `x` | `y`;
-type IsAString = A extends string ? true : false; // true
+type A = `x` | `y`
+type IsAString = A extends string ? true : false // true
 
-type B = `x` | `y` | 3;
-type IsBString = B extends string ? true : false; // false because of 3, which is a number
+type B = `x` | `y` | 3
+type IsBString = B extends string ? true : false // false because of 3, which is a number
 ```
 
 For anyone feeling too lazy to read through the typescript docs, here's a brief explanation of conditional types:
@@ -126,7 +126,7 @@ Conditional types are very similar to the JavaScript ternary operator - if the `
 [`infer`](https://www.typescriptlang.org/docs/handbook/2/conditional-types.html#inferring-within-conditional-types), while looking somewhat scary at first, is actually pretty useful and not that complicated. It's a lot like JavaScript destructuring (or pattern matching, if you lean that way).
 
 ```ts
-type Point = { x: 3; y: 4 }
+type Point = { x: 3 y: 4 }
 type X = Point extends { x: infer X } ? X : never // X is 3
 ```
 
@@ -165,7 +165,7 @@ type GetX<T> = T extends { x: infer X } ? X : never
 // another fun bit: the X type variable
 // is only available in the "true" branch of the conditional
 
-type x = GetX<{ x: 3; y: 4 }> // x is 3
+type x = GetX<{ x: 3 y: 4 }> // x is 3
 type x2 = GetX<{ y: 4 }> // x2 is never
 ```
 
