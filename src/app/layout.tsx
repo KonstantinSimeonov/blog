@@ -26,26 +26,30 @@ export default async function Layout({ children }: React.PropsWithChildren) {
     <html lang="en">
       <body>
         <main>
-          <h1>My detailed and mostly wrong opinions on programming</h1>
-          {children}
+          <article>
+            <h1>My detailed and mostly wrong opinions on programming</h1>
+            {children}
+          </article>
         </main>
         <aside>
-          <h2>Posts</h2>
-          <Nav posts={posts} />
-          <h2>Author</h2>
-          <ol>
-            <li>
-              <Link href="https://github.com/KonstantinSimeonov">Github</Link>
-            </li>
-            <li>
-              <Link href="https://konsimeonov.lol">Website</Link>
-            </li>
-            <li>
-              <Link href="https://www.hackerrank.com/kon_trombon">
-                Hackerrank
-              </Link>
-            </li>
-          </ol>
+          <nav>
+            <h2>Posts</h2>
+            <Nav posts={posts} />
+            <h2>Author</h2>
+            <ol>
+              <li>
+                <Link href="https://github.com/KonstantinSimeonov">Github</Link>
+              </li>
+              <li>
+                <Link href="https://konsimeonov.lol">Website</Link>
+              </li>
+              <li>
+                <Link href="https://www.hackerrank.com/kon_trombon">
+                  Hackerrank
+                </Link>
+              </li>
+            </ol>
+          </nav>
         </aside>
         <footer>
           <p>
