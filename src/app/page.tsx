@@ -1,6 +1,7 @@
 import { getAllPosts } from "@/lib/api";
 import { Post } from "./Post";
 import { generateMetadataForPost } from "./post-metadata";
+import "highlight.js/styles/panda-syntax-dark.css"
 
 const Index = async () => {
   const [post] = await getAllPosts();

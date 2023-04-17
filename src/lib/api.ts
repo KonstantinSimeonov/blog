@@ -12,6 +12,9 @@ import remarkToc from "remark-toc";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import matter from "gray-matter"
+import rehypeHighlight from "rehype-highlight";
+import hs from "highlight.js/lib/languages/haskell"
+import ts from "highlight.js/lib/languages/typescript"
 
 async function getParserPre() {
   return unified()
@@ -20,6 +23,8 @@ async function getParserPre() {
     .use(remarkToc, { heading: `Contents` })
     .use(remarkRehype)
     .use(rehypeStringify)
+    .data(`settings`, { fragment: true })
+    .use(rehypeHighlight, { languages: { hs, haskell: hs, ts, typescript: ts } })
     .use(rehypeShiki, {
       highlighter: await shiki.getHighlighter({ theme: `dracula` })
     })

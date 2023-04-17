@@ -2,6 +2,7 @@ import { Post } from "@/app/Post";
 import { generateMetadataForPost } from "@/app/post-metadata";
 import { getAllPosts, getPostById } from "@/lib/api";
 import { Metadata } from "next";
+import "highlight.js/styles/dark.css"
 
 type Props = { params: { id: string } };
 
