@@ -53,6 +53,10 @@ aside {
   }
 }
 
+aside > nav > h2 {
+  margin: 0;
+}
+
 main {
   width: 100%;
 }
