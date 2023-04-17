@@ -120,15 +120,9 @@ h1 {
   margin: 12px 0 40px 0;
 }
 
-header {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  align-items: center;
-}
-
 header h2 {
   text-decoration: underline;
+  margin-top: 0.25rem;
 }
 
 header time {
