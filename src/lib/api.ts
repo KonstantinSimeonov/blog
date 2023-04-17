@@ -6,8 +6,6 @@ import remarkGfm from "remark-gfm";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
 import rehypeStringify from "rehype-stringify";
-import rehypeShiki from "@leafac/rehype-shiki"
-import * as shiki from "shiki"
 import remarkToc from "remark-toc";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
@@ -25,9 +23,6 @@ async function getParserPre() {
     .use(rehypeStringify)
     .data(`settings`, { fragment: true })
     .use(rehypeHighlight, { languages: { hs, haskell: hs, ts, typescript: ts } })
-    .use(rehypeShiki, {
-      highlighter: await shiki.getHighlighter({ theme: `dracula` })
-    })
     .use(rehypeSlug)
     .use(rehypeAutolinkHeadings, {
       content: (arg) => ({
