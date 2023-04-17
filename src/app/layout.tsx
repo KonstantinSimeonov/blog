@@ -27,7 +27,7 @@ export default async function Layout({ children }: React.PropsWithChildren) {
       <body>
         <main>
           <article>
-            <h1>My detailed and mostly wrong opinions on programming</h1>
+            <h1>Detailed and mostly wrong<br />opinions on programming</h1>
             {children}
           </article>
         </main>
