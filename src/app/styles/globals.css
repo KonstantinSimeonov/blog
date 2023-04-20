@@ -27,6 +27,7 @@ html {
   overflow-x: hidden;
   font-family: var(--font-mono);
   font-size: 16px;
+  color: rgba(255, 251, 239, 0.8);
 }
 
 body {
@@ -41,11 +42,11 @@ aside {
   position: absolute;
   top: 0;
   right: calc(2 * var(--body-padding));
-  min-width: 20rem;
-  width: 20rem;
+  min-width: 15rem;
+  width: 15rem;
 }
 
-@media (max-width: 1500px) {
+@media (max-width: 1300px) {
   aside {
     position: unset;
     width: min(var(--main-content-width), 100vw - 2 * var(--body-padding));
